@@ -1,32 +1,24 @@
 # AXON.SEC // Neural Vision Defense
 
-## 01. Platform Overview
-**AXON.SEC** is an industrial-grade cybersecurity platform engineered to protect the vision-processing stacks of autonomous vehicles and high-integrity robotics. In an era where self-driving systems (FSD) rely almost exclusively on camera data, they are uniquely vulnerable to **Adversarial Machine Learning (AML)** attacks. These attacks—often called "optical malware"—involve pixel-level perturbations or physical adversarial patches (like specific stickers on road signs) that cause neural networks to misclassify objects or ignore safety-critical markers.
+## Overview
+AXON.SEC is a high-integrity cybersecurity platform designed to secure the vision-processing pipelines of autonomous vehicles and industrial robotics. In modern autonomous mobility, camera-based perception is the primary decision-making organ. This makes systems vulnerable to "optical malware"—adversarial visual inputs designed to trick artificial intelligence into misidentifying road signs, ignoring obstacles, or miscalculating trajectory.
 
-AXON.SEC provides a real-time, high-fidelity tactical dashboard that monitors vision streams through two specialized neural engines. It doesn't just "see" the road; it mathematically verifies the integrity of the video signal and semantically validates the logic of the environment.
+AXON.SEC provides a real-time defense layer that monitors video streams using a dual-engine approach. It mathematically verifies the structural integrity of every pixel and semantically audits the logical consistency of the environment. This ensures that autonomous systems operate on verified data, preventing dangerous misclassifications caused by digital injection or physical tampering.
 
-## 02. Comprehensive Documentation
-For an in-depth technical whitepaper including full system architecture, mathematical derivations for the CNN, and semantic logic flowcharts, please refer to the primary documentation file:
+## Core Technology Stack
+The platform is built for high-concurrency and real-time inference at the edge:
 
-👉 **[TECHNICAL WHITEPAPER (documentation.md)](./documentation.md)**
+*   **Semantic Reasoning Engine**: Google Gemini 2.5 Flash
+*   **Neural Spectral Processor**: TensorFlow.js (Custom Spectral CNN Implementation)
+*   **Application Core**: React 19 (ES6+)
+*   **Interface HUD**: Tailwind CSS
+*   **Data Telemetry**: Recharts
+*   **Streaming API**: HTML5 MediaStream & WebRTC
 
-## 03. Core Technology Stack
-AXON.SEC is built using a low-latency, high-concurrency stack optimized for real-time inference and 60FPS UI updates.
+## Documentation
+For a detailed breakdown of the system architecture, feature mechanics, and neural processing logic, please refer to the following guide:
 
-*   **Semantic Intelligence Engine**: `Google Gemini 2.5 Flash Native Audio/Vision`
-*   **Neural Spectral Engine**: `TensorFlow.js` (Custom AegisNet-V4 Implementation)
-*   **Application Framework**: `React 19`
-*   **Interface Design**: `Tailwind CSS` (Tactical HUD Configuration)
-*   **Telemetry & Analytics**: `Recharts` (High-frequency signal tracking)
-*   **Vision Interface**: `HTML5 Canvas API` + `WebRTC MediaStream`
-*   **Iconography**: `Lucide React`
-
-## 04. Key Capabilities
-*   **Real-time CNN Spectral Analysis**: Identifies digital injection and high-frequency pixel interference.
-*   **Semantic Logic Verification**: Cross-references visual data with road physics and situational common sense via Gemini 2.5.
-*   **Adaptive Security Thresholds**: Configurable tripwires for threat and noise sensitivity.
-*   **Tactical Heatmapping**: Live activation maps that visually isolate potential adversarial patches.
-*   **Forensic Triage Feed**: Categorical logging for 'Manipulated Sign', 'Image Noise', and 'Logic Error'.
+[Technical Documentation](./documentation.md)
 
 ---
 **Date:** 12/25/2025  

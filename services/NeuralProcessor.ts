@@ -1,6 +1,5 @@
-
 /**
- * AEGISNET-V4 [Spectral CNN Engine]
+ * Neural Signal Processor [Spectral CNN Engine]
  * Specialized for real-time detection of high-frequency adversarial patches.
  * Utilizes a Laplacian Convolutional kernel to highlight structural anomalies.
  */

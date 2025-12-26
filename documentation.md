@@ -1,87 +1,83 @@
-# AXON.SEC // Tactical Neural Defense Whitepaper
+# AXON.SEC Technical Specification
 **Date:** 12/25/2025  
 **Author:** Ritvik Indupuri
 
 ---
 
 ## Table of Contents
-1. [01. Executive Summary](#01-executive-summary)
-2. [02. Technical Infrastructure](#02-technical-infrastructure)
-3. [03. Integrated Security Workflow](#03-integrated-security-workflow)
-4. [04. Global System Architecture](#04-global-system-architecture)
-5. [05. AegisNet-V4: Spectral CNN Engine](#05-aegisnet-v4-spectral-cnn-engine)
-6. [06. Semantic Reasoning: Gemini 2.5 Architecture](#06-semantic-reasoning-gemini-25-architecture)
-7. [07. Core Functional Modules & Feature Mechanics](#07-core-functional-modules--feature-mechanics)
-    * [Video Ingestion & In-Memory Analysis](#video-ingestion--in-memory-analysis)
-    * [Tactical HUD & Spectral Heatmapping](#tactical-hud--spectral-heatmapping)
-    * [Security Telemetry: Risk Scoring & Stability Tracker](#security-telemetry-risk-scoring--stability-tracker)
-    * [Governance Controls: Thresholds & Triage](#governance-controls-thresholds--triage)
-8. [08. Conclusion](#08-conclusion)
+1. [Executive Summary](#executive-summary)
+2. [Technical Infrastructure](#technical-infrastructure)
+3. [Global System Architecture](#global-system-architecture)
+4. [Spectral CNN Engine: Signal Verification](#spectral-cnn-engine-signal-verification)
+5. [Semantic Reasoning Engine: Gemini Logic](#semantic-reasoning-engine-gemini-logic)
+6. [Detailed Feature Breakdown](#detailed-feature-breakdown)
+    * [Video Upload & In-Memory Analysis](#video-upload--in-memory-analysis)
+    * [Computer Vision & Tactical Heatmapping](#computer-vision--tactical-heatmapping)
+    * [Risk Level Metrics & Scoring Logic](#risk-level-metrics--scoring-logic)
+    * [Stability Tracker & Temporal Analysis](#stability-tracker--temporal-analysis)
+    * [System Configuration & Alert Thresholds](#system-configuration--alert-thresholds)
+    * [Threat Summary & Activity Feed](#threat-summary--activity-feed)
+7. [Conclusion](#conclusion)
 
 ---
 
-## 01. Executive Summary
-AXON.SEC is an industrial-grade cybersecurity framework designed to safeguard the vision stacks of autonomous mobility platforms. In a landscape where self-driving systems rely on neural perception, they are uniquely vulnerable to adversarial "optical malware"—patches or digital injections designed to deceive AI models. AXON.SEC addresses this by deploying a dual-verification defense layer. By fusing mathematical spectral analysis via a local CNN with high-level semantic reasoning via Gemini 2.5 Flash, the system ensures that vision data is both physically authentic and logically consistent.
+## Executive Summary
+AXON.SEC is a specialized security framework engineered to defend autonomous mobility platforms against visual adversarial attacks. By deploying a hybrid verification layer, the system ensures that the vision data used for navigation is both mathematically authentic and logically sound. This multi-layered defense neutralizes "optical malware"—manipulated images or physical patches intended to deceive autonomous sensors.
 
-## 02. Technical Infrastructure
-The AXON.SEC platform is built on a high-concurrency architecture optimized for sub-millisecond telemetry updates and real-time inference.
+## Technical Infrastructure
+The platform is built on a modern, low-latency stack designed for real-time telemetry and heavy neural inference:
 
-*   **Logic Layer**: Google Gemini 2.5 Flash (Native Audio/Vision) for situational common-sense auditing.
-*   **Spectral Layer**: TensorFlow.js running custom AegisNet-V4 kernels directly in the browser's WebGL context.
-*   **Core Framework**: React 19 for modular component orchestration and state management.
-*   **UI/UX HUD**: Tailwind CSS designed for high-contrast tactical readability.
-*   **Data Streaming**: WebRTC and HTML5 MediaStream APIs for high-bandwidth frame ingestion.
-*   **Visualization**: Recharts for temporal stability analysis and risk distribution.
+*   **Primary Logic**: Google Gemini 2.5 Flash for high-level semantic auditing.
+*   **Neural Signal Processing**: TensorFlow.js for local, browser-based spectral analysis.
+*   **Framework**: React 19 for modular component orchestration.
+*   **HUD Design**: Tailwind CSS for a high-fidelity, tactical user interface.
+*   **Telemetry**: Recharts for visualizing high-frequency risk data.
 
-## 03. Integrated Security Workflow
-The platform operates as a continuous security loop. When a vision stream is ingested, the system extracts frames at a frequency synchronized with the analysis engine's capability. These frames are bifurcated into two separate processing pipelines: one for structural signal verification (CNN) and one for semantic logic validation (Gemini). The results are then synthesized into a unified risk metric, which triggers automated alerts and HUD updates.
-
-## 04. Global System Architecture
-The security pipeline is visualized below, highlighting the parallel nature of the defense mechanism. Data flows from the source through a dual-channel buffer, ensuring that both mathematical and logical checks happen simultaneously to maintain low-latency performance required for moving vehicles.
+## Global System Architecture
+The system operates on a parallel-processing paradigm where ingested video data is split into two distinct verification channels to ensure comprehensive security without introducing latency bottlenecks.
 
 ```mermaid
 graph TD
     subgraph Stream_Ingestion
-    VS[Video Source / FSD Feed] --> FB[Dual-Channel Frame Buffer]
+    VS[Video Source] --> FB[Dual-Channel Frame Buffer]
     end
     
-    subgraph Parallel_Verification_Engines
-    FB --> |Path Alpha| CNN[AegisNet-V4 CNN Engine]
-    FB --> |Path Beta| GEM[Gemini 2.5 Semantic Engine]
+    subgraph Parallel_Verification
+    FB --> |Channel A| CNN[Spectral CNN Processor]
+    FB --> |Channel B| GEM[Gemini Semantic Engine]
     end
     
-    subgraph Intelligence_Synthesis
-    CNN --> |High-Freq Anomaly| SA[Signal Analysis]
-    GEM --> |Context Matching| CV[Context Validation]
+    subgraph Neural_Analysis
+    CNN --> |Pixel-Level Integrity| SA[Signal Verification]
+    GEM --> |Contextual Sanity| CV[Logic Validation]
     end
     
-    subgraph Signal_Fusion_Core
-    SA --> |55% Weight| FUS[Weighted Risk Fusion]
+    subgraph Score_Fusion
+    SA --> |55% Weight| FUS[Risk Fusion Engine]
     CV --> |45% Weight| FUS
     end
     
-    subgraph Professional_Tactical_HUD
-    FUS --> RM[Global Risk Meter]
-    SA --> HM[Live Heatmap Overlay]
-    CV --> AF[Categorized Activity Feed]
+    subgraph UI_HUD_Output
+    FUS --> RM[Risk Level Meter]
+    SA --> HM[Activation Heatmap]
+    CV --> AF[Activity Triage Feed]
     end
 ```
 
-The Weighted Risk Fusion engine combines the Signal Health Score (the math) and the Context Logic Score (the meaning). A high noise score from the CNN indicates physical tampering, while a low logic score from Gemini indicates situational contradictions. Together, they provide a 360-degree security verdict.
+The system ingests raw video data and performs a dual-lock check. Channel A (CNN) looks at the "Math" of the image—searching for unnatural noise. Channel B (Gemini) looks at the "Meaning"—ensuring the scene follows road rules and physical reality. These results fuse into a single Risk Level displayed on the dashboard.
 
-## 05. AegisNet-V4: Spectral CNN Engine
-AegisNet-V4 is a lightweight, edge-optimized convolutional network. Rather than classifying objects, it focuses on identifying "unnatural" mathematical patterns in the image signal.
+## Spectral CNN Engine: Signal Verification
+The Spectral Engine is a custom convolutional neural network designed specifically for anomaly detection within high-frequency image components.
 
 ```mermaid
 graph LR
-    subgraph Frame_Preprocessing
-    I[Raw Input] --> GS[Grayscale Transformation]
-    GS --> NR[Noise Reduction]
+    subgraph Frame_Processing
+    I[Raw Input] --> GS[Grayscale]
+    GS --> LT[Laplacian Kernel]
     end
     
-    subgraph Spectral_Convolution
-    NR --> LT[Laplacian Kernel 3x3]
-    LT --> AC[ReLU Activation]
+    subgraph Feature_Extraction
+    LT --> AC[Activation Layer]
     AC --> VAR[Variance Computation]
     end
     
@@ -91,56 +87,58 @@ graph LR
     end
 ```
 
-The engine applies a Laplacian second-order spatial derivative to the frame. This mathematical process highlights discontinuities in intensity, effectively "stripping away" the semantic objects to reveal the underlying signal structure. Adversarial noise typically exists in frequencies that create high-variance clusters in this map. These clusters are then normalized into a Noise Score and projected onto the UI as a green activation map.
+The engine applies a mathematical operation called a Laplacian derivative to every frame. This process isolates the highest frequencies in the image, effectively removing the "visual" layer and leaving only the underlying signal structure. Adversarial patches usually contain high-frequency "noise" that appears as unnatural spikes in this map. The system calculates the variance of these spikes to produce a Signal Health percentage and generates a green activation heatmap to highlight suspicious areas.
 
-## 06. Semantic Reasoning: Gemini 2.5 Architecture
-Situational logic is governed by the Gemini 2.5 Flash model. This engine serves as the "Common Sense" layer of the defense stack, detecting anomalies that a mathematical filter might ignore, such as a stop sign positioned in the middle of a high-speed highway lane.
+## Semantic Reasoning Engine: Gemini Logic
+The Semantic Logic engine utilizes the Gemini 2.5 Flash model to provide a situational "sanity check" that mathematical filters might miss.
 
 ```mermaid
 graph TD
-    subgraph Multimodal_Inference
-    V[Video Frame] --> B64[Base64 Frame Segment]
-    P[Security Policy] --> SI[System Prompt Injection]
+    subgraph MultiModal_Ingestion
+    V[Frame Segment] --> B64[Base64 Encoding]
+    P[Policy Set] --> SI[System Instructions]
     end
     
-    subgraph Gemini_Neural_Processing
-    B64 --> G25[Gemini 2.5 Flash API]
+    subgraph AI_Inference
+    B64 --> G25[Gemini 2.5 Flash]
     SI --> G25
     end
     
-    subgraph Data_Parsing
-    G25 --> TS[Telemetry: AXON_UPDATE]
-    G25 --> AL[Alert: CATEGORY_MSG]
+    subgraph Telemetry_Output
+    G25 --> TS[Telemetry String]
+    G25 --> AL[Contextual Alert]
     end
     
-    subgraph HUD_Integration
-    TS --> TH[Threat Score Parsing]
-    AL --> LOG[Activity Triage Feed]
+    subgraph UI_Integration
+    TS --> RL[Logic Risk Parsing]
+    AL --> LOG[Event Logging]
     end
 ```
 
-The Gemini engine processes frame segments every 2 seconds. Using the provided System Instructions, it analyzes the scene for contradictions in road physics, signage placement, and object behavior. It returns structured telemetry that allows the HUD to categorize threats into specific risk buckets like 'Logic Error' or 'Manipulated Sign'.
+Using the `gemini-2.5-flash-native-audio-preview-09-2025` model, AXON.SEC performs a logical audit of the environment. It checks for impossible object behaviors or signage contradictions—such as a stop sign in a location that violates road physics. The model communicates via structured telemetry, allowing the interface to categorize specific "Logic Errors" and adjust the overall risk score.
 
-## 07. Core Functional Modules & Feature Mechanics
+## Detailed Feature Breakdown
 
-### Video Ingestion & In-Memory Analysis
-The platform supports high-bandwidth video ingestion via the **Upload Video** module. Once a file is selected, the browser creates a local blob URL, injecting the stream into a hidden canvas for pixel manipulation. This ensures that the original video data is never modified, maintaining forensic integrity. The analysis engine extracts 2 frames per second (FRAME_RATE = 2.0), striking an optimal balance between security coverage and browser performance.
+### Video Upload & In-Memory Analysis
+The platform supports direct video file ingestion via the **Upload Video** function. Once a file is provided, the system creates an in-memory blob to stream the footage without modifying the source file. Frames are extracted at a frequency of 2 FPS, which provides a high level of security coverage while maintaining browser performance. This allows for detailed forensic analysis of pre-recorded autonomous driving footage.
 
-### Tactical HUD & Spectral Heatmapping
-The **Live Tactical HUD** is the primary interface for security analysts. The most critical component is the **Activation Heatmap**. By applying the Laplacian kernel's output to an RGBA canvas, the system generates a semi-transparent green glow over regions where the CNN detects high-frequency anomalies. Users can utilize the **Heatmap Opacity** slider to adjust the intensity of this layer, allowing them to visually correlate detected "noise" with physical objects like signs or camera lenses.
+### Computer Vision & Tactical Heatmapping
+The **Computer Vision** layer is the primary visual tool for security analysts. It features an **Activation Heatmap** overlay that can be adjusted via a slider. This heatmap visually isolates areas where the Spectral CNN identifies signal tampering. By increasing the **Heatmap Opacity**, analysts can pinpoint exactly which part of a road sign or obstacle has been mathematically compromised by an adversarial attack.
 
-### Security Telemetry: Risk Scoring & Stability Tracker
-Telemetry is unified into the **Overall Threat Risk** score. This is a dynamic calculation derived from:
-*   **Context Logic Score (45%)**: How well the scene aligns with known safety rules.
-*   **Signal Health Score (55%)**: The mathematical purity of the video data.
+### Risk Level Metrics & Scoring Logic
+The **Risk Level** is a synthesized percentage that provides a high-level summary of the system's security status. It is calculated using a weighted algorithm:
+*   **Signal Integrity (55%)**: Based on the mathematical purity of the pixel data.
+*   **Contextual Logic (45%)**: Based on the situational "sanity" of the scene.
+The HUD turns red and displays a **THREAT_ALERT** whenever this combined score exceeds the user-defined thresholds.
 
-To monitor trends over time, the **Stability Tracker** provides a 30-second sliding window area chart. This visualization is essential for detecting "intermittent" attacks—sophisticated tampering that triggers only for a few frames to avoid detection by simpler, non-temporal filters.
+### Stability Tracker & Temporal Analysis
+Security threats are often intermittent. To combat this, the **Stability Tracker** provides a real-time area chart monitoring risk trends over a 30-second window. This allows analysts to identify "flickering" attacks—where a hacker injects noise for only a fraction of a second to avoid detection by standard filters.
 
-### Governance Controls: Thresholds & Triage
-The **System Config** panel allows operators to define the "Tripwires" for the defense stack.
-*   **Threat Alert Slider**: Sets the sensitivity for semantic logic errors.
-*   **Noise Alert Slider**: Sets the sensitivity for spectral interference.
-When a score exceeds its threshold, a **CRITICAL** event is logged, and the HUD visual status shifts to a high-alert red state. These events are sorted in the **Activity Feed**, where users can filter by category to focus on specific attack vectors.
+### System Configuration & Alert Thresholds
+The **System Config** panel gives operators granular control over the defense stack. Through intuitive sliders, users can set the **Threat Alert** and **Noise Alert** tripwires. For example, in poor weather conditions where natural image noise is higher, an operator might increase the noise threshold to reduce false positives while maintaining high semantic (logic) sensitivity.
 
-## 08. Conclusion
-AXON.SEC represents a new paradigm in neural defense. By combining the sub-millisecond mathematical precision of the AegisNet-V4 CNN with the deep situational reasoning of Gemini 2.5 Flash, the framework provides a robust, verifiable security layer for the future of autonomous mobility. The integration of real-time heatmapping, temporal stability tracking, and adaptive governance ensures that autonomous systems are not just seeing the world, but verifying it.
+### Threat Summary & Activity Feed
+The **Threat Summary** provides a natural language explanation of the current security landscape, generated dynamically by the Gemini engine. This is complemented by the **Activity Feed**, which triages events into specific categories like 'Manipulated Sign', 'Image Noise', or 'Logic Error'. This categorization allows for rapid response and efficient post-event analysis.
+
+## Conclusion
+AXON.SEC is a robust, dual-layered security solution for autonomous systems. By integrating the pixel-perfect precision of spectral analysis with the deep reasoning capabilities of Gemini 2.5 Flash, the platform ensures that autonomous vehicles can trust what they see. The result is a verifiable, highly configurable, and transparent security layer that safeguards the future of autonomous mobility.
