@@ -1,17 +1,17 @@
-# AXON.SEC // Neural Defense Platform
+# AXON.SEC - Autonomous Vision Defense
 
 ## Overview
-AXON.SEC is a professional-grade cybersecurity framework engineered to safeguard the vision-processing pipelines of Full Self-Driving (FSD) vehicles and high-integrity robotics. As autonomous systems transition to high-stakes environments, their reliance on neural perception introduces a critical vulnerability: **Adversarial Optical Malware**. 
+AXON.SEC is a high-integrity cybersecurity framework engineered to protect the vision-processing pipelines of Full Self-Driving (FSD) vehicles and advanced robotics. In autonomous systems, the perception layer is the primary decision-making organ. This reliance creates a vulnerability to **Adversarial Optical Malware**—visual inputs designed to deceive AI models while appearing benign to human observers.
 
-This platform provides a real-time defense layer that monitors vision streams through a dual-lock verification system. By mathematically auditing pixel signal integrity and semantically verifying situational logic, AXON.SEC ensures that autonomous decision-making engines operate only on authenticated, non-tampered data.
+The platform provides a real-time defense layer that monitors vision streams through a dual-lock system: verifying the mathematical integrity of the pixel signal and auditing the semantic logic of the environment.
 
 ## System Architecture
-The platform utilizes a high-concurrency, parallel-processing pipeline to maintain zero-latency bottlenecks during high-speed FSD analysis.
+The platform utilizes a parallel-processing pipeline to ensure zero-latency bottlenecks during high-speed FSD analysis.
 
 ```mermaid
 graph TD
     subgraph Data_Ingestion
-    VS[Video Source] --> FB[Frame Buffer]
+    VS[FSD Video Source] --> FB[Frame Buffer]
     end
     
     subgraph Analysis_Engines
@@ -29,11 +29,11 @@ graph TD
     end
 ```
 
-**Figure 1: AXON.SEC Parallel Defense Workflow.** The architecture bifurcates raw vision data into two specialized processing agents. The first agent (Path 1) analyzes pixel-level spectral frequencies for structural tampering, while the second agent (Path 2) uses deep semantic reasoning via Gemini 2.5 to ensure the scene's logic remains consistent with known road physics and safety regulations.
+**Figure 1: AXON.SEC Parallel Defense Workflow.** The architecture bifurcates raw vision data into two specialized processing agents. Path 1 (CNN) analyzes pixel-level spectral frequencies for structural tampering, while Path 2 (Gemini) uses deep semantic reasoning to ensure the scene's logic remains consistent with road physics.
 
-## Technical Tech Stack
-*   **Semantic Intelligence Engine**: Google Gemini 2.5 Flash
-*   **Neural Spectral Processor**: TensorFlow.js (Custom Spectral CNN)
+## Core Technologies
+*   **Semantic Intelligence**: Google Gemini 2.5 Flash
+*   **Neural Processing**: TensorFlow.js (Custom Spectral CNN)
 *   **Application Framework**: React 19 (ES6+)
 *   **Tactical Interface Layer**: Tailwind CSS
 *   **High-Frequency Telemetry**: Recharts
