@@ -1,0 +1,7 @@
+{
+  "name": "AXON.SEC",
+  "description": "Tactical Neural Defense for Autonomous Mobility. Real-time adversarial detection for FSD vision stacks using spectral and semantic fusion.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

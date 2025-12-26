@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXON.SEC // Neural Vision Defense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.15.0/dist/tf.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #010203;
+            --accent: #00ffcc;
+            --accent-dim: rgba(0, 255, 204, 0.2);
+            --danger: #ff0055;
+            --surface: #0a0c0f;
+            --border: rgba(255, 255, 255, 0.15);
+            /* Ultra High Contrast */
+            --text-high: #ffffff;
+            --text-med: #e2e8f0;
+            --text-low: #94a3b8;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-high);
+            margin: 0;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel {
+            background: rgba(10, 12, 15, 0.95);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(40px);
+        }
+        
+        /* AXON.SEC Logo: Geometric Delta + Neural Signal Pulse */
+        .axon-logo {
+            width: 44px;
+            height: 44px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .delta-shape {
+            width: 0;
+            height: 0;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-bottom: 32px solid var(--accent);
+            position: relative;
+            filter: drop-shadow(0 0 10px var(--accent-dim));
+        }
+        .delta-inner {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 18px solid var(--bg);
+            position: absolute;
+            left: -10px;
+            top: 10px;
+        }
+        .pulse-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #ffffff;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 15px #fff;
+            animation: axon-pulse 2s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes axon-pulse {
+            0% { transform: translateY(10px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-20px); opacity: 0; }
+        }
+
+        .activation-map {
+            mix-blend-mode: hard-light;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 0; }
+        
+        /* Text Readability Fixes */
+        .readable-title { color: var(--text-high); font-weight: 700; letter-spacing: 0.05em; }
+        .readable-sub { color: var(--text-med); font-weight: 500; }
+        .readable-muted { color: var(--text-low); font-weight: 400; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "recharts": "https://esm.sh/recharts@^3.6.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
