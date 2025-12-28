@@ -1,4 +1,4 @@
-# AXON.SEC Technical Specification: High-Integrity Neural Defense 
+# AXON.SEC Technical Documentation: FSD Vision Security
 **Date:** December 25, 2025  
 **By:** Ritvik Indupuri
 
