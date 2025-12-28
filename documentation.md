@@ -58,27 +58,53 @@ graph TD
 Agent Alpha is a specialized Convolutional Neural Network implemented in TensorFlow.js, optimized for **Spectral Integrity Auditing**. It functions as a frequency-domain sieve, isolating artificial perturbations from natural environmental data.
 
 ### 3.1 Mathematical Logic: Laplacian Convolution
-Unlike standard object detectors that focus on semantic labels, Agent Alpha analyzes the second-order spatial derivative of the image intensity. This is achieved using a discrete **Laplacian Kernel**:
-$$K = \begin{bmatrix} 0 & -1 & 0 \\ -1 & 4 & -1 \\ 0 & -1 & 0 \end{bmatrix}$$
-When this kernel is convolved across the luminance channel, it effectively "zeros out" areas of uniform color or gradual gradients (like the sky or road surface) and highlights high-frequency discontinuities. Adversarial noise, which is often composed of high-frequency "jitter" designed to disrupt deep neural networks, appears as high-intensity energy spikes in the convolved output.
+Unlike standard object detectors that focus on semantic labels, Agent Alpha analyzes the second-order spatial derivative of the image intensity. This is achieved using a discrete **Laplacian Kernel** that filters for high-frequency signal energy. Natural surfaces (roads, sky) result in values near zero, whereas adversarial patches appear as dense clusters of high-magnitude spikes.
 
 ### 3.2 Detection Logic & Heatmap Projection
-1.  **Normalization:** The input 24-bit RGB frame is collapsed into a single 32-bit float grayscale tensor.
-2.  **Convolution:** The Laplacian kernel is applied. The resulting tensor represents the local "curvature" of the image signal.
-3.  **ReLU Activation:** The convolved tensor passes through a Rectified Linear Unit (ReLU) to suppress negative gradients and noise below the baseline.
-4.  **Heatmap Generation:** Remaining activations are projected onto a green-phosphor RGBA texture. The Alpha channel is dynamically scaled based on the local standard deviation, ensuring that natural edges remain transparent while malicious artifacts glow with high intensity.
+The **Spectral Activation Map (Heatmap)** is the primary diagnostic tool for visual operators. By projecting the rectified Laplacian output back onto the source frame, the system highlights non-natural pixel distributions that correlate with adversarial injection.
 
 ```mermaid
-graph LR
-    Input[Raw Frame] --> Norm[Normalize Tensors]
-    Norm --> Gray[Grayscale Reduction]
-    Gray --> Conv[Laplacian Kernel Convolution]
-    Conv --> ReLU[ReLU Activation - Noise Boost]
-    ReLU --> Var[Statistical Variance Analysis]
-    Var --> Score[Entropy Metric]
-    Score --> Overlay[Heatmap Projector]
+flowchart LR
+    %% Node Definitions
+    Input([Raw 1080p Stream])
+    Norm[Tensor Normalization]
+    Gray[Luminance Collapse]
+    
+    subgraph Feature_Extraction [Neural Feature Extraction]
+        direction LR
+        Conv{{Laplacian 3x3 Conv}}
+        ReLU[ReLU Rectification]
+    end
+
+    subgraph Statistical_Synthesis [Statistical Synthesis]
+        direction LR
+        Var[Variance Calculation]
+        Score[/Entropy Metric/]
+    end
+
+    HM{Spectral Heatmap}
+
+    %% Flow Logic
+    Input --> Norm
+    Norm --> Gray
+    Gray ==> Conv
+    Conv --> ReLU
+    ReLU ==> Var
+    Var --> Score
+    Score ==> HM
+
+    %% Styling
+    classDef inputStyle fill:#010203,stroke:#fff,stroke-width:2px,color:#fff
+    classDef convStyle fill:#010203,stroke:#00ffcc,stroke-width:3px,color:#fff,stroke-dasharray: 5 5
+    classDef decisionStyle fill:#010203,stroke:#3b82f6,stroke-width:2px,color:#fff
+    classDef outputStyle fill:#010203,stroke:#ff0055,stroke-width:2px,color:#fff
+
+    class Input inputStyle
+    class Conv,ReLU convStyle
+    class Var,Score decisionStyle
+    class HM outputStyle
 ```
-*Figure 1: Agent Alpha CNN Processing Pipeline. The flowchart tracks the transformation of raw optical data into a high-frequency spectral activation map via mathematical convolution and statistical variance analysis.*
+*Figure 1: Agent Alpha Processing Pipeline. This visualization tracks the transformation of raw optical data into a high-frequency spectral activation map via mathematical convolution and statistical variance analysis.*
 
 ---
 
