@@ -1,7 +1,7 @@
 # AXON.SEC Technical Specification: High-Integrity Neural Defense
 **Version:** 4.0.0 (Technical Deep-Dive Revision)  
 **Date:** December 25, 2025  
-**System Classification:** Level 5 Autonomous Security Auditor  
+**By:** Ritvik Indupuri
 
 ---
 
