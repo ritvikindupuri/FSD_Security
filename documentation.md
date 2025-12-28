@@ -1,5 +1,4 @@
-# AXON.SEC Technical Specification: High-Integrity Neural Defense
-**Version:** 4.0.0 (Technical Deep-Dive Revision)  
+# AXON.SEC Technical Specification: High-Integrity Neural Defense 
 **Date:** December 25, 2025  
 **By:** Ritvik Indupuri
 
