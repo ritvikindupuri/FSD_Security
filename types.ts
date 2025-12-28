@@ -9,6 +9,7 @@ export enum AnomalySeverity {
 export interface AnomalyEvent {
   id: string;
   timestamp: number;
+  analysisTimestamp: string;
   type: string;
   category?: 'Manipulated Sign' | 'Image Noise' | 'Logic Error' | 'General';
   description: string;

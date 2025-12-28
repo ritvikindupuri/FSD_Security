@@ -4,9 +4,10 @@ import React from 'react';
 interface LayoutProps {
   children: React.ReactNode;
   rightPanel: React.ReactNode;
+  onNavItemClick?: (item: string) => void;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, rightPanel }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, rightPanel, onNavItemClick }) => {
   return (
     <div className="flex flex-col h-screen text-slate-100 bg-[#010203]">
       {/* Main Header */}
@@ -25,11 +26,15 @@ export const Layout: React.FC<LayoutProps> = ({ children, rightPanel }) => {
             </div>
           </div>
 
-          <nav className="hidden xl:flex items-center gap-10 pl-10 border-l border-white/20">
+          <nav className="hidden xl:flex items-center gap-10 pl-10 border-l border-white/20 h-10">
             {['Activity_Log', 'Risk_Analysis', 'Security_Feed'].map((item) => (
-              <span key={item} className="text-[11px] font-bold uppercase tracking-widest text-slate-200 cursor-default hover:text-white transition-colors">
+              <button 
+                key={item} 
+                onClick={() => onNavItemClick?.(item)}
+                className="text-[11px] font-black uppercase tracking-widest text-slate-400 hover:text-[#00ffcc] hover:scale-105 transition-all active:scale-95 py-2 px-2"
+              >
                 {item}
-              </span>
+              </button>
             ))}
           </nav>
         </div>
