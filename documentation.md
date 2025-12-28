@@ -1,26 +1,30 @@
 # AXON.SEC Technical Specification: High-Integrity Neural Defense
-**Version:** 3.8.0 (Deep Neural & Architectural Revision)  
+**Version:** 4.0.0 (Technical Deep-Dive Revision)  
 **Date:** December 25, 2025  
 **System Classification:** Level 5 Autonomous Security Auditor  
 
 ---
 
-## 1.0 Infrastructure Overview
-AXON.SEC is a high-bandwidth cybersecurity framework engineered to audit the vision pipelines of Full Self-Driving (FSD) vehicles. In the contemporary autonomous landscape, the "Perception Layer" is the primary decision-making organ; its reliance on neural networks creates a catastrophic vulnerability to **Adversarial Optical Malware**. AXON.SEC mitigates this via a **Parallel Dual-Lock Architecture**, fusing real-time mathematical edge-verification with cloud-based semantic reasoning.
+## 1.0 Executive Summary: Autonomous Perception Integrity
+AXON.SEC is a high-bandwidth cybersecurity framework engineered to provide real-time integrity validation for the vision-processing pipelines of Full Self-Driving (FSD) vehicles and advanced robotic systems. In the current paradigm of autonomous mobility, the perception stack serves as the fundamental input layer for kinetic decision-making; however, these neural-dependent systems are critically vulnerable to **Adversarial Machine Learning (AML)** and **Optical Malware**. These threats utilize mathematically optimized perturbations to induce misclassification in primary vision models—errors that are frequently catastrophic in high-speed environments.
+
+The AXON.SEC framework implements a **Spectral-Semantic Fusion** strategy. By bifurcating the ingestion stream, the system simultaneously audits the mathematical purity of the pixel-level signal (via Local Spectral CNN) and the logical consistency of the environmental context (via Cloud-Based Gemini 2.5 Flash). This dual-path verification eliminates single points of failure, ensuring that visual data is audited for both signal-level tampering and high-level logic drift before it is ingested by the vehicle's navigation controllers.
 
 ![AXON.SEC Tactical Interface](https://i.imgur.com/I5NkVu1.png)
-*Figure 1: The AXON.SEC Tactical Command Center. The primary interface provides a zero-latency HUD displaying real-time spectral activation maps (Heatmap), temporal risk synthesis graphs, and forensic database controls for fleet-wide audit synchronization.*
+*Figure 1: The AXON.SEC Tactical Command Center interface. This HUD provides centralized telemetry, displaying real-time spectral activation maps, temporal risk synthesis graphs, and forensic database controls for fleet-wide audit synchronization.*
 
 ---
 
 ## 2.0 Detailed System Architecture
-The AXON.SEC architecture is designed for **zero-bottleneck processing**. It bifurcates the raw vision signal at the point of ingestion to ensure that a failure in one intelligence path does not compromise the entire audit stack. This "Defense in Depth" strategy ensures that mathematical signal tampering and logical inconsistencies are caught simultaneously.
+The AXON.SEC architecture is built for **Parallel Asynchronous Auditing**. It ensures that security verification occurs with zero latency impact on the primary FSD control loop by operating on a mirrored signal path.
 
-### 2.1 The Data Path & Latency Management
-The system utilizes a high-throughput pipeline that prioritizes GPU-accelerated local compute for immediate defense, while offloading semantic reasoning to the cloud.
-1.  **Level 1 - Ingestion:** 1080p 60FPS streams are ingested into a `Dynamic GPU Buffer`.
-2.  **Level 2 - Bifurcation:** The buffer is split. Path A (Agent Alpha) utilizes **WebGL-accelerated Tensor operations** for sub-10ms spectral analysis. Path B (Agent Beta) prepares **JPEG-quantized frames** for semantic auditing.
-3.  **Level 3 - Synthesis:** The results from both agents are synthesized into a single `Global Risk Vector` which drives the HUD telemetry.
+### 2.1 Bifurcated Ingestion & Processing Tiers
+The system architecture follows a four-tiered data progression model:
+
+1.  **Level 1 - Raw Ingestion:** High-bandwidth (1080p/60FPS) video is ingested into a synchronized GPU frame buffer. This buffer is shared across the local stack via WebGL textures to avoid expensive CPU-to-GPU memory copies.
+2.  **Level 2 - Local Spectral Path (Agent Alpha):** Direct access to raw luminance tensors allows for sub-10ms high-pass filtering. This stage detects "Pixel-Level Optical Malware" by analyzing the signal in the spatial frequency domain.
+3.  **Level 3 - Semantic Reasoning Path (Agent Beta):** Quantized JPEG frames (512x512 resolution) are extracted from the buffer and streamed to the Gemini 2.5 Flash engine. This path verifies that the objects detected in the scene obey physical laws and road-safety logic.
+4.  **Level 4 - Decision Synthesis:** The **Global Risk Vector** is calculated by weighting the outputs of both agents. If the synthesized score exceeds the operational safety threshold, the system triggers an emergency audit log and alerts the vehicle's behavioral arbiter.
 
 ```mermaid
 graph TD
@@ -46,28 +50,23 @@ graph TD
     HUD --> |Alert Trigger| EA[Emergency Audit]
     end
 ```
-*Figure 2: Full System Architecture Diagram. This diagram illustrates the parallel bifurcation of data flows, showing how the system separates mathematical signal integrity (CNN) from situational logic (Gemini) to prevent single-point failures.*
+*Figure 1: Full System Architecture Diagram. This diagram illustrates the parallel processing model, highlighting the distinct separation between mathematical signal verification (Local) and situational context auditing (Cloud).*
 
 ---
 
 ## 3.0 Agent Alpha: The Spectral CNN (Forensic Engine)
-Agent Alpha is a specialized Convolutional Neural Network implemented in TensorFlow.js. Unlike standard AI models that classify objects (e.g., "Is this a car?"), Agent Alpha is a **Frequency-Domain Auditor**. It answers the question: "Is the mathematical structure of these pixels natural?"
+Agent Alpha is a specialized Convolutional Neural Network implemented in TensorFlow.js, optimized for **Spectral Integrity Auditing**. It functions as a frequency-domain sieve, isolating artificial perturbations from natural environmental data.
 
-### 3.1 Training Methodology: Zero-Shot Manifold Detection
-Agent Alpha is not trained on a traditional labeled dataset. Instead, it is built on the principle of **Natural Image Statistics (NIS)**. 
-*   **The Problem:** Adversarial attacks inject high-frequency noise that is mathematically optimized to perturb the latent space of a vehicle's primary vision model. 
-*   **The Solution:** Natural scenes follow a "Power Law" distribution where low-frequency components dominate. Agent Alpha uses an unsupervised **Spectral Divergence** algorithm to flag any pixels that deviate from this natural manifold. It effectively treats every frame as a residual-noise problem rather than a classification problem.
+### 3.1 Mathematical Logic: Laplacian Convolution
+Unlike standard object detectors that focus on semantic labels, Agent Alpha analyzes the second-order spatial derivative of the image intensity. This is achieved using a discrete **Laplacian Kernel**:
+$$K = \begin{bmatrix} 0 & -1 & 0 \\ -1 & 4 & -1 \\ 0 & -1 & 0 \end{bmatrix}$$
+When this kernel is convolved across the luminance channel, it effectively "zeros out" areas of uniform color or gradual gradients (like the sky or road surface) and highlights high-frequency discontinuities. Adversarial noise, which is often composed of high-frequency "jitter" designed to disrupt deep neural networks, appears as high-intensity energy spikes in the convolved output.
 
-### 3.2 The Heatmap: High-Frequency Projection
-The most critical visual output of Agent Alpha is the **Spectral Activation Map (Heatmap)**. This overlay provides the operator with immediate visual proof of signal tampering.
-
-**How the Heatmap Works:**
-1.  **Laplacian Filtering:** The CNN applies a $3 \times 3$ Laplacian Kernel to the luminance channel. This discards all "flat" visual data (sky, roads) and isolates only the high-frequency edges.
-2.  **Rectification (ReLU):** The output is passed through a ReLU activation to remove negative gradients, focusing only on the positive "spikes" of high-frequency noise.
-3.  **Green-Phosphor Mapping:** The system converts these spikes into a 4-channel RGBA map. 
-    *   **G-Channel:** Receives the raw noise intensity, creating the glowing green effect.
-    *   **A-Channel (Alpha):** Dynamically weighted by the variance of the local pixel neighborhood. This ensures that only *anomalous* noise glows, while natural edges remain transparent.
-4.  **UI Overlay:** The map is rendered via a secondary canvas using a `mix-blend-mode: screen` setting, allowing it to "project" onto the raw video feed like a night-vision filter.
+### 3.2 Detection Logic & Heatmap Projection
+1.  **Normalization:** The input 24-bit RGB frame is collapsed into a single 32-bit float grayscale tensor.
+2.  **Convolution:** The Laplacian kernel is applied. The resulting tensor represents the local "curvature" of the image signal.
+3.  **ReLU Activation:** The convolved tensor passes through a Rectified Linear Unit (ReLU) to suppress negative gradients and noise below the baseline.
+4.  **Heatmap Generation:** Remaining activations are projected onto a green-phosphor RGBA texture. The Alpha channel is dynamically scaled based on the local standard deviation, ensuring that natural edges remain transparent while malicious artifacts glow with high intensity.
 
 ```mermaid
 graph LR
@@ -79,18 +78,22 @@ graph LR
     Var --> Score[Entropy Metric]
     Score --> Overlay[Heatmap Projector]
 ```
-*Figure 3: Agent Alpha CNN Processing Pipeline. This flow highlights the mathematical transformation from raw pixels to high-frequency noise activation maps, showing how the system filters out natural scene data to isolate adversarial artifacts.*
+*Figure 1: Agent Alpha CNN Processing Pipeline. The flowchart tracks the transformation of raw optical data into a high-frequency spectral activation map via mathematical convolution and statistical variance analysis.*
 
 ---
 
 ## 4.0 Agent Beta: Semantic Auditor (Gemini 2.5 Flash)
-Agent Beta provides the "Contextual Conscience" of the platform. While the CNN detects mathematical tampering, Gemini 2.5 Flash detects **Logical Incoherence**.
+Agent Beta provides **Situational Sanity Checks** by analyzing the contextual logic of the driving environment through deep multimodal reasoning.
 
-### 4.1 Multimodal Semantic Tokenization
-Gemini 2.5 Flash is configured as a **Live Multimodal Streamer**. It receives JPEG-compressed frames every 500ms. Its role is to compare the "Scene Graph" against known road laws and physics.
+### 4.1 Multimodal Temporal Tokenization
+Gemini 2.5 Flash is configured as a high-bandwidth multimodal streamer. Unlike the CNN, which treats each frame as a static mathematical object, Agent Beta treats the vision stream as a **Temporal Sequence**.
+*   **Temporal Causality Auditing:** By analyzing frames across a sliding window, Gemini detects "Impossible State Changes." This includes detecting if an object's bounding box shifts by a distance that exceeds its current velocity vectors, or if environmental entities (like lane markers) exhibit non-physical flickering or overlapping.
+*   **Contextual Behavioral Auditing:** Gemini cross-references entities against the **AXON Security Protocol**, checking for environmental dissonance (e.g., a "Stop" sign detected in the middle of a high-speed highway lane).
 
-*   **Logic Error Detection:** Gemini can identify objects that appear mathematically "clean" but are logically impossible. For example, if a road surface appears on top of a building, or if a stop sign is placed 20 feet in the air.
-*   **Adversarial Contextual Analysis:** It identifies "Contextual Hacks." A classic example is a "45 MPH" sign placed in a "Stop" zone. The CNN might see clean pixels, but Gemini's semantic engine will flag the **Logic Drift** because the sign's placement contradicts the environmental context.
+### 4.2 Telemetry and Logic Drift
+Gemini generates structured telemetry tokens via its **[AXON_UPDATE]** protocol.
+*   **Logic Drift Score:** This metric represents the delta between the "Observed World" and the "Physical Reality Model." High logic drift suggests that the perception stack is being fed a semantically coherent but physically impossible scenario (e.g., a deepfake overlay or a projection attack).
+*   **Threat Categorization:** Gemini categorizes threats into specific security domains (Manipulated Sign, vDoS Attack, or Sensor Blinding) based on the qualitative nature of the detection.
 
 ```mermaid
 graph TD
@@ -101,18 +104,38 @@ graph TD
     C1 & C2 & C3 --> TLM[Structured Telemetry Output]
     TLM --> LOG[Security Feed Alert]
 ```
-*Figure 4: Agent Beta Semantic Reasoning Loop. Gemini analyzes the relationship between disparate visual objects (Signs, Roads, Vehicles) to ensure global scene consistency, outputting structured telemetry tokens for the HUD.*
+*Figure 1: Agent Beta Semantic Reasoning Loop. Gemini analyzes the relationships between environmental entities to identify logical discrepancies indicative of high-level adversarial manipulation.*
 
 ---
 
-## 5.0 Synthesis: The Dual-Lock Outcome
-The final **Synthesis Score** is the ultimate product of AXON.SEC. It is a weighted fusion of Agent Alpha's mathematical certainty and Agent Beta's logical reasoning.
+## 5.0 Synthesis Logic: The Global Risk Vector
+The final **Synthesis Score** is the ultimate product of the AXON.SEC pipeline. It is calculated by the **Synthesis Processor**, which weights the mathematical certainty of Agent Alpha against the qualitative reasoning of Agent Beta.
 
-$$Risk = (Threat_{Gemini} \times 0.45) + (Noise_{CNN} \times 0.55)$$
+### 5.1 The Weighting Formula
+The system employs the following weighted average to derive the total system risk:
+$$Risk_{Global} = (Threat_{Gemini} \times 0.45) + (Noise_{CNN} \times 0.55)$$
 
-By weighting the CNN output higher (0.55), we prioritize the mathematical detection of signal tampering, while Gemini's 0.45 weight provides the critical contextual sanity check that prevents false positives from heavy rain, lens flares, or sensor degradation.
+**Rationale for Weighting:**
+*   **0.55 (CNN Weight):** Mathematical spectral noise is a primary indicator of signal tampering. High noise entropy is statistically linked to sensor injection or optical interference. We prioritize this deterministic "Hard Data."
+*   **0.45 (Gemini Weight):** Semantic logic serves as a critical contextual filter. It identifies *intent* and *impossible scenarios*. While highly accurate, semantic reasoning can exhibit higher variance in extreme weather conditions (e.g., heavy snow), hence the slightly lower primary weight.
+
+### 5.2 Defensive Thresholding
+The system maintains dynamic thresholds that are automatically modified during **Secure Mode**:
+*   **Standard Mode:** `Threat_Limit = 40`, `Noise_Limit = 40`.
+*   **Secure Mode (Shield Enabled):** Thresholds are halved (`20 / 20`). This increases the sensitivity of the synthesis processor, forcing a high-alert state even for subtle anomalies that might otherwise be discarded as atmospheric noise.
+
+```mermaid
+graph LR
+    CNNS[CNN Entropy Score] --> |x 0.55| WP[Weighted Processor]
+    GEMS[Gemini Logic Score] --> |x 0.45| WP
+    WP --> |Summation| GRV[Global Risk Vector]
+    GRV --> |Threshold Check| ACT[HUD Alert / Alert Log]
+```
+*Figure 1: Synthesis Logic Flow. The diagram demonstrates how mathematical noise and semantic logic are fused into a single unified risk metric.*
 
 ---
 
-## 6.0 Conclusion
-AXON.SEC represents the apex of autonomous vehicle defense. By combining the **unblinking mathematical precision of the Spectral CNN** with the **nuanced multimodal reasoning of Gemini 2.5**, the platform ensures that the "Eyes" of the vehicle remain uncompromised. Every frame is a witness; AXON.SEC is the judge.
+## 6.0 Conclusion: Strategic Resilience in Autonomous Perception
+The AXON.SEC framework establishes a new benchmark for high-integrity security auditing in autonomous mobility. By deploying a bifurcated defense model, the system addresses the inherent vulnerabilities of neural-based perception stacks at both the signal and logic levels. The integration of the **Spectral CNN** provides a robust mathematical barrier against pixel-level adversarial noise, while the **Gemini 2.5 Semantic Engine** ensures that high-level environmental reasoning remains grounded in physical reality.
+
+This architecture ensures that the imaging arrays and perception layers of autonomous vehicles are no longer unverified subsystems susceptible to silent failure. AXON.SEC provides the necessary transparency and defensive depth to maintain system reliability in the face of increasingly sophisticated optical threats. As autonomous fleets scale, the AXON.SEC synthesis of mathematical precision and multi-modal reasoning serves as the definitive protocol for ensuring the long-term integrity and safety of autonomous systems. Every processed frame undergoes a rigorous, dual-tier validation cycle, ensuring that kinetic decisions are based exclusively on verified, untampered environmental data.
